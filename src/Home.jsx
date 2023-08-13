@@ -9,14 +9,14 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
     ])
 
-    const handleClick = (name, e) => {
-        console.log('hello ' + name, e.target);
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(newBlogs);
     }
 
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} title="All Blogs"/>
-            <button onClick={(e) => handleClick('Naruto', e)}>Click me</button>
+            <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>
         </div>
      );
 }
