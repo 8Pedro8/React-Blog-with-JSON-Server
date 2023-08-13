@@ -15,13 +15,17 @@ const Home = () => {
         setTimeout(() => { // To simulate real server request
             fetch('http://localhost:8000/blogs')
                 .then(res => {
+                    if(!res.ok) throw Error('Failed to fetch the data');
                     return res.json();
                 })
                 .then(data => {
                     //console.log(data);
                     setBlogs(data);
                     setIsPending(false)
-                });
+                })
+                .catch(err => {
+                    console.log(err.message);
+                })
         }, 1000);
     }, []);
 
